@@ -57,4 +57,13 @@ public class Player : MonoBehaviour
 
         player.Move(movement);
     }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(gameObject);
+            Destroy(hit.gameObject);
+        }
+    }
 }
