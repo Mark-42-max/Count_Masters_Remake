@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
 
     private float dir_x;
     private float velocity = 0.0f;
+    public bool isDead = false;
 
     // Start is called before the first frame update
     void Start()
@@ -62,6 +63,7 @@ public class Player : MonoBehaviour
     {
         if (hit.gameObject.CompareTag("Enemy"))
         {
+            isDead = !isDead;
             Destroy(gameObject);
             Destroy(hit.gameObject);
         }
