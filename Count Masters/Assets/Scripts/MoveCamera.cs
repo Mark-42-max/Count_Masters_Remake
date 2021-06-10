@@ -8,6 +8,8 @@ public class MoveCamera : MonoBehaviour
     Vector3 offset;
     public GameObject ref_player;
     Player trigger_stop;
+
+    Vector3 moveVector;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +22,10 @@ public class MoveCamera : MonoBehaviour
     void Update()
     {
         if (trigger_stop.isDead) { return; }
-        transform.position = player.position - offset;
+
+        moveVector = player.position - offset;
+        moveVector.y = Mathf.Clamp(moveVector.y, 7, 0);
+
+        transform.position = moveVector;
     }
 }

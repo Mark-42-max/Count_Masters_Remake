@@ -6,10 +6,10 @@ public class Player : MonoBehaviour
 {
     CharacterController player;
 
-    [SerializeField] private float speed = 5.0f;    //the speed at which player moves
-    [SerializeField] private float grav_vel = -1f;    //the gravitational speed
+    [SerializeField] readonly private float speed = 8.0f;    //the speed at which player moves
+    [SerializeField] readonly private float grav_vel = -1f;    //the gravitational speed
 
-    private float dir_x;
+
     private float velocity = 0.0f;
     public bool isDead = false;
 
@@ -30,16 +30,8 @@ public class Player : MonoBehaviour
         Vector3 movement = Vector3.zero;   //vector 3 for player
 
         // X
-        if (Input.GetKey(KeyCode.A))
-        {
-            dir_x = -speed;
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            dir_x = speed;
-        }
 
-        movement.x = dir_x * Time.deltaTime;
+        movement.x = Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime;
 
         // Y
         if (player.isGrounded)
@@ -53,7 +45,7 @@ public class Player : MonoBehaviour
         movement.y = velocity * Time.deltaTime;
 
         // Z
-        movement.z = speed * Time.deltaTime;
+        //movement.z = speed * Time.deltaTime;
 
 
         player.Move(movement);
