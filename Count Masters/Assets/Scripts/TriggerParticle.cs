@@ -14,16 +14,8 @@ public class TriggerParticle : MonoBehaviour
         particles = GetComponent<ParticleSystem>();   
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (!trigger.isDead || particles.isPlaying)
-        {
-            particles.Stop();
-        }
-        else
-        {
-            particles.Play();
-        }
+       
     }
 }

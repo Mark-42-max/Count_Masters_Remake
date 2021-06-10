@@ -56,8 +56,8 @@ public class Player : MonoBehaviour
         if (hit.gameObject.CompareTag("Enemy"))
         {
             isDead = !isDead;
-            Destroy(gameObject);
-            Destroy(hit.gameObject);
+            Destroy(hit.gameObject, 1.0f);
+            Destroy(gameObject, 1.0f);           
         }
     }
 }
