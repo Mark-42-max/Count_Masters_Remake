@@ -9,6 +9,10 @@ public class Player : MonoBehaviour
     [SerializeField] readonly private float speed = 8.0f;    //the speed at which player moves
     [SerializeField] readonly private float grav_vel = -1f;    //the gravitational speed
 
+    //reference from manager
+    public GameObject manager;
+    PlayerManager refer;
+
 
     private float velocity = 0.0f;
     public bool isDead = false;
@@ -16,12 +20,14 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        refer = manager.GetComponent<PlayerManager>();
         player = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!refer.trigger_move) { return; }
         MovePlayer();
     }
 
