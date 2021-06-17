@@ -40,6 +40,7 @@ public class PlayerManager : MonoBehaviour
         dirX = Input.GetAxisRaw("Horizontal") * speed;
         moveVector.x = dirX * Time.deltaTime;
 
+
         transform.Translate(moveVector);
     }
 }
