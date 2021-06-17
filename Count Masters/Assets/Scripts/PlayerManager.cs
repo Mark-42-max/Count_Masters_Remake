@@ -13,6 +13,9 @@ public class PlayerManager : MonoBehaviour
 
     GameObject go;
 
+    float dirX;
+    public float speed = 5.0f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -20,14 +23,23 @@ public class PlayerManager : MonoBehaviour
         go = Instantiate(player[0]);
         go.transform.SetParent(transform);
         army.Add(go);
-        var position = new Vector3(Random.Range(-10, 10), 1.51f, Random.Range(-10, 10));
-        go = Instantiate(player[0], position, Quaternion.identity);
-        go.transform.SetParent(transform);
+        for(int i = 1; i <= 6; i++)
+        {
+            var position = new Vector3(Random.Range(-5, 5), 1.51f, Random.Range(-1, 4));
+            go = Instantiate(player[0], position, Quaternion.identity);
+            go.transform.SetParent(transform);
+            army.Add(go);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.forward * 5 * Time.deltaTime);
+        Vector3 moveVector = Vector3.zero;
+
+        dirX = Input.GetAxisRaw("Horizontal") * speed;
+        moveVector.x = dirX * Time.deltaTime;
+
+        transform.Translate(moveVector);
     }
 }
