@@ -6,9 +6,8 @@ using Random = UnityEngine.Random;
 public class PlayerManager : MonoBehaviour
 {
     public GameObject[] player;  //for initial character
-    private List<GameObject> army = new List<GameObject>();  //for army
+    readonly private List<GameObject> army = new List<GameObject>();  //for army
 
-    Transform place;
 
 
     GameObject go;
@@ -23,9 +22,9 @@ public class PlayerManager : MonoBehaviour
         go = Instantiate(player[0]);
         go.transform.SetParent(transform);
         army.Add(go);
-        for(int i = 1; i <= 6; i++)
+        for (int i = 1; i <= 6; i++)
         {
-            var position = new Vector3(Random.Range(-5, 5), 1.51f, Random.Range(-1, 4));
+            var position = new Vector3(Random.Range(-5, 5), -0.14f, Random.Range(-4, 0));
             go = Instantiate(player[0], position, Quaternion.identity);
             go.transform.SetParent(transform);
             army.Add(go);
@@ -40,6 +39,8 @@ public class PlayerManager : MonoBehaviour
         dirX = Input.GetAxisRaw("Horizontal") * speed;
         moveVector.x = dirX * Time.deltaTime;
 
+
+        moveVector.z = speed * Time.deltaTime;
 
         transform.Translate(moveVector);
     }
