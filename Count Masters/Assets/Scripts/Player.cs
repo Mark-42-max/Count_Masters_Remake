@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private void OnControllerColliderHit(ControllerColliderHit hit)
+    private void OnCollisionEnter(Collision collision)
     {
-        if(hit.gameObject.name == "Cube")
+        if(collision.gameObject.name == "Cube")
         {
-            print("Enemy");
+            print(collision.collider.name);
         }
     }
 }
